@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Snapable
   - Point
+  - SnappingPointsManager
   layers:
   - Default
   - TransparentFX
