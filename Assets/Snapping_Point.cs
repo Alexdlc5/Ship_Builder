@@ -9,6 +9,6 @@ public class Snapping_Point : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        distance_from_object = Vector2.Distance(transform.position, GameObject.FindGameObjectWithTag("Snapable").transform.position);
+        distance_from_object = Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
     }
 }
