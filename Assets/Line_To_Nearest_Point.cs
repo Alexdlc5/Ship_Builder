@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Line_To_Nearest_Point : MonoBehaviour
 {
+    private bool submode = false;
     private LineRenderer line_renderer;
     public Texture2D texture;
     private Transform[] points;
@@ -21,6 +22,22 @@ public class Line_To_Nearest_Point : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //submode
+        if (Input.GetKeyDown(KeyCode.E) && !submode)
+        {
+            submode = true;
+            //make line invisible
+            line_renderer.startColor = new Color(line_renderer.startColor.r, line_renderer.startColor.g, line_renderer.startColor.b, 0);
+            line_renderer.endColor = new Color(line_renderer.endColor.r, line_renderer.endColor.g, line_renderer.endColor.b, 0);
+        }
+        else if (Input.GetKeyDown(KeyCode.E) && submode)
+        {
+            submode = false;
+            //make line visible
+            line_renderer.startColor = new Color(line_renderer.startColor.r, line_renderer.startColor.g, line_renderer.startColor.b, 1);
+            line_renderer.endColor = new Color(line_renderer.endColor.r, line_renderer.endColor.g, line_renderer.endColor.b, 1);
+        }
+        //selection
         if (Player_Selection.current_placable == null)
         {
             //make line invisible

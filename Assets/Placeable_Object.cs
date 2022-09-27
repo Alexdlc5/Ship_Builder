@@ -12,56 +12,23 @@ public class Placeable_Object : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        GetComponent<BoxCollider2D>().enabled = false;
         if (held)
         {
             //follow the mouse while held
             Vector3 screenCoords = Input.mousePosition;
             screenCoords.z = Camera.main.nearClipPlane + 1;
             transform.position = Camera.main.ScreenToWorldPoint(screenCoords);
+            setVisibility(false);
         }
         if (Input.GetMouseButton(0) && placement_timer > .4f)
         {
+            setVisibility(true);
+
             placement_timer = 0;
             held = false;
-            //place at closest point then delete point
+            //place at closest point 
             transform.position = closest_point.transform.position;
-            if (!closest_point.gameObject.name.Equals("Submarine"))
-            {
-                Destroy(closest_point.gameObject);
-            }
-            else
-            {
-                closest_point.gameObject.tag = "Untagged";
-                Destroy(closest_point);
-            }
-            print("out");
-            if (Snapping_Point_Manager.points != null)
-            {
-                for (int i = 0; i < surrounding_points.Length; i++)
-                {
-                    if ((Vector2) surrounding_points[i].transform.position == new Vector2(0,0))
-                    {
-                        Destroy(surrounding_points[i]);
-                    }
-                    else
-                    {
-                        for (int j = 0; j < Snapping_Point_Manager.points.Length; j++)
-                        {
-                            //print("(" + surrounding_points[i].transform.position.x + ", " + surrounding_points[i].transform.position.y + ") : (" + Snapping_Point_Manager.points[j].transform.position.x + ", " + Snapping_Point_Manager.points[j].transform.position.y + ")");
-                            surrounding_points[i].transform.parent = null;
-                            if (Snapping_Point_Manager.points[j] != null && (Vector2)surrounding_points[i].transform.position == (Vector2)Snapping_Point_Manager.points[j].transform.position)
-                            {
-                                Destroy(surrounding_points[i]);
-                            }
-                            else
-                            {
-                                surrounding_points[i].transform.parent = gameObject.transform;
-                            }
-                        }
-                    }
-                }
-            }
-            print("in");
             Snapping_Point_Manager.updateForNewPlacement();
             setLineRen();
             //creates new placable object to place next
@@ -71,6 +38,7 @@ public class Placeable_Object : MonoBehaviour
             gameObject.tag = "Block";
             Submarine_Core.updateBlocks();
             gameObject.transform.parent = GameObject.Find("Submarine").transform;
+            GetComponent<BoxCollider2D>().enabled = true;
             Destroy(gameObject.GetComponent<Placeable_Object>());
         }
         else 
@@ -116,5 +84,19 @@ public class Placeable_Object : MonoBehaviour
     {
         findClosestSnappingPoint();
         GameObject.Find("LineRenderer").GetComponent<Line_To_Nearest_Point>().setSecondPoint(closest_point.gameObject.transform);
+    }
+    void setVisibility(bool visibility)
+    {
+        int isvisible = 0;
+        if (visibility)
+        {
+            isvisible = 1;
+        }
+        GetComponent<SpriteRenderer>().color = new Color(GetComponent<SpriteRenderer>().color.r, GetComponent<SpriteRenderer>().color.g, GetComponent<SpriteRenderer>().color.b, isvisible);
+        for (int i = 0; i < surrounding_points.Length; i++)
+        {
+            surrounding_points[i].GetComponent<SpriteRenderer>().color = new Color(surrounding_points[i].GetComponent<SpriteRenderer>().color.r, surrounding_points[i].GetComponent<SpriteRenderer>().color.g, surrounding_points[i].GetComponent<SpriteRenderer>().color.b, isvisible);
+            surrounding_points[i].GetComponent<Snapping_Point>().held = !visibility;
+        }
     }
 }
