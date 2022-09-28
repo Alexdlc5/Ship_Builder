@@ -31,14 +31,14 @@ public class Placeable_Object : MonoBehaviour
             transform.position = closest_point.transform.position;
             Snapping_Point_Manager.updateForNewPlacement();
             setLineRen();
-            //creates new placable object to place next
-            GameObject placed_object = Instantiate(Player_Selection.current_placable);
-            placed_object.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             //changes to block, updates subcore, destroys placeable script
             gameObject.tag = "Block";
             Submarine_Core.updateBlocks();
             gameObject.transform.parent = GameObject.Find("Submarine").transform;
             GetComponent<BoxCollider2D>().enabled = true;
+            //creates new placable object to place next
+            GameObject placed_object = Instantiate(Player_Selection.current_placable);
+            placed_object.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Destroy(gameObject.GetComponent<Placeable_Object>());
         }
         else 
