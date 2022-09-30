@@ -11,8 +11,11 @@ public class Snapping_Point : MonoBehaviour
     void Update()
     {
         distance_from_object = Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
-
-        if (!held && distance_from_object > 1)
+        if (Submarine_Core.submode == true)
+        {
+            GetComponent<SpriteRenderer>().color = new Color(GetComponent<SpriteRenderer>().color.r, GetComponent<SpriteRenderer>().color.g, GetComponent<SpriteRenderer>().color.b, 0);
+        }
+        else if (!held && distance_from_object > 1)
         {
             GetComponent<SpriteRenderer>().color = new Color(GetComponent<SpriteRenderer>().color.r, GetComponent<SpriteRenderer>().color.g, GetComponent<SpriteRenderer>().color.b, 1 - (distance_from_object - 1) / 5);
         }

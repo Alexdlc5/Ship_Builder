@@ -19,17 +19,15 @@ public class Snapping_Point_Manager : MonoBehaviour
         {
             for (int j = 0; j < point_GO.Length; j++)
             {
-                print("(" +point_GO[j].transform.position.x + ", " + point_GO[j].transform.position.y + ") : (" + Submarine_Core.blocks[i].transform.position.x + ", " + Submarine_Core.blocks[i].transform.position.y + ")");
+                //print("(" +point_GO[j].transform.position.x + ", " + point_GO[j].transform.position.y + ") : (" + Submarine_Core.blocks[i].transform.position.x + ", " + Submarine_Core.blocks[i].transform.position.y + ")");
                 if (point_GO[j].transform.position == Submarine_Core.blocks[i].transform.position)
                 {
                     if (point_GO[j].name.Equals("Submarine"))
                     {
-                        print("SUB");
                         point_GO[j].tag = "Untagged";
                     }
                     else
                     {
-                        print("Destroy");
                         Destroy(point_GO[j]);
                         destroyed_point_count++;
                     }

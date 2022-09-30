@@ -7,11 +7,20 @@ public class Placeable_Object : MonoBehaviour
     public bool held = true;
     public GameObject[] surrounding_points;
     private Snapping_Point closest_point;
+    private Snapping_Point second_closest_point;
     private float placement_timer = 0;
 
+    private void Start()
+    {
+        for (int i = 0; i < surrounding_points.Length; i++)
+        {
+            surrounding_points[i].tag = "Untagged";
+        }
+    }
     // Update is called once per frame
     void Update()
     {
+        Snapping_Point_Manager.updateForNewPlacement();
         GetComponent<BoxCollider2D>().enabled = false;
         if (held)
         {
@@ -21,7 +30,7 @@ public class Placeable_Object : MonoBehaviour
             transform.position = Camera.main.ScreenToWorldPoint(screenCoords);
             setVisibility(false);
         }
-        if (Input.GetMouseButton(0) && placement_timer > .4f)
+        if (Submarine_Core.submode == false && Input.GetMouseButtonDown(0) && placement_timer > .1f)
         {
             setVisibility(true);
 
@@ -29,13 +38,26 @@ public class Placeable_Object : MonoBehaviour
             held = false;
             //place at closest point 
             transform.position = closest_point.transform.position;
+            if (closest_point.gameObject.name.Equals("Submarine"))
+            {
+                closest_point.gameObject.tag = "Untagged";
+            }
+            else
+            {
+                Destroy(closest_point.gameObject);
+            }
+            closest_point = second_closest_point;
+            for (int i = 0; i < surrounding_points.Length; i++)
+            {
+                surrounding_points[i].tag = "Point";
+            }
             Snapping_Point_Manager.updateForNewPlacement();
             setLineRen();
             //changes to block, updates subcore, destroys placeable script
             gameObject.tag = "Block";
             Submarine_Core.updateBlocks();
             gameObject.transform.parent = GameObject.Find("Submarine").transform;
-            GetComponent<BoxCollider2D>().enabled = true;
+            //GetComponent<BoxCollider2D>().enabled = true;
             //creates new placable object to place next
             GameObject placed_object = Instantiate(Player_Selection.current_placable);
             placed_object.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -54,29 +76,49 @@ public class Placeable_Object : MonoBehaviour
         if (Snapping_Point_Manager.points[0] != null)
         {
             closest_point = Snapping_Point_Manager.points[0];
+            second_closest_point = Snapping_Point_Manager.points[0];
         }
         else
         {
             closest_point = null;
+            second_closest_point = null;
         }
         for (int i = 0; i < Snapping_Point_Manager.points.Length; i++)
         {
-            //if current point closer; make closest point
-            if (closest_point.distance_from_object >= Snapping_Point_Manager.points[i].distance_from_object)
+            //if current point closer
+            if (Snapping_Point_Manager.points[i].distance_from_object <= closest_point.distance_from_object)
             {
-                bool location_occupied = false;
-                for (int j = 0; j < Submarine_Core.blocks.Length; j++)
+                if (checkSnappingPointOcuppation(i) != null)
                 {
-                    if (Snapping_Point_Manager.points[i] == null || Snapping_Point_Manager.points[i].gameObject.transform.position == Submarine_Core.blocks[j].transform.position)
-                    {
-                        location_occupied = true;
-                    }
-                }
-                if (!location_occupied)
-                {
-                    closest_point = Snapping_Point_Manager.points[i];
+                    closest_point = checkSnappingPointOcuppation(i);
                 }
             }
+            else if (Snapping_Point_Manager.points[i].distance_from_object <= second_closest_point.distance_from_object)
+            {
+                if (checkSnappingPointOcuppation(i) != null)
+                {
+                    second_closest_point = checkSnappingPointOcuppation(i);
+                }
+            }
+        }
+    }
+    Snapping_Point checkSnappingPointOcuppation(int i)
+    {
+        bool location_occupied = false;
+        for (int j = 0; j < Submarine_Core.blocks.Length; j++)
+        {
+            if (Snapping_Point_Manager.points[i] == null || Snapping_Point_Manager.points[i].gameObject.transform.position == Submarine_Core.blocks[j].transform.position)
+            {
+                location_occupied = true;
+            }
+        }
+        if (!location_occupied)
+        {
+            return Snapping_Point_Manager.points[i];
+        }
+        else
+        {
+            return null;
         }
     }
     //updates second point of line renderer
