@@ -35,6 +35,7 @@ public class Submarine_Core : MonoBehaviour
     {
         previous_location = current_location;
         current_location = transform.localPosition;
+        Debug.DrawLine(previous_location, current_location);
 
         if (Input.GetKeyDown(KeyCode.E))
         {

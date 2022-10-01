@@ -10,6 +10,22 @@ public class Snapping_Point : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //if (!gameObject.GetComponent<Submarine_Core>() || !GetComponentInParent<Block>())
+        //{
+        //    GameObject[] blocks = GameObject.FindGameObjectsWithTag("Block");
+        //    bool connected = false;
+        //    for (int i = 0; i < blocks.Length; i++)
+        //    {
+        //        if (Vector2.Distance(transform.position, blocks[i].transform.position) <= 1.1f)
+        //        {
+        //            connected = true;
+        //        }
+        //    }
+        //    if (!connected)
+        //    {
+        //        Destroy(gameObject);
+        //    }
+        //}
         distance_from_object = Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
         if (Submarine_Core.submode == true)
         {

@@ -48,4 +48,14 @@ public class Snapping_Point_Manager : MonoBehaviour
             }
         }
     }
+    public static void updatePoints()
+    {
+        GameObject[] point_GO = GameObject.FindGameObjectsWithTag("Point");
+        points = new Snapping_Point[point_GO.Length];
+        for (int i = 0; i < point_GO.Length; i++)
+        {
+            points[i] = point_GO[i].GetComponent<Snapping_Point>();
+        }
+    }
 }
+

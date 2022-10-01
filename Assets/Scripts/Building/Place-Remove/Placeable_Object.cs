@@ -20,6 +20,10 @@ public class Placeable_Object : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Player_Selection.destruction_mode)
+        {
+            Destroy(gameObject);
+        }
         Snapping_Point_Manager.updateForNewPlacement();
         GetComponent<BoxCollider2D>().enabled = false;
         if (held)

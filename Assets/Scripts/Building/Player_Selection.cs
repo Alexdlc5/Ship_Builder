@@ -5,4 +5,5 @@ using UnityEngine;
 public class Player_Selection : MonoBehaviour
 {
     public static GameObject current_placable;
+    public static bool destruction_mode = false;
 }

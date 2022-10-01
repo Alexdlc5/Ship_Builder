@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -35,7 +33,9 @@ public class Change_Placeable : MonoBehaviour
     }
     void createPlaceable()
     {
-        if (Player_Selection.current_placable != Placeable)
+        Player_Selection.destruction_mode = false;
+        Placeable_Object placeable_object_in_scene = FindObjectOfType<Placeable_Object>();
+        if (placeable_object_in_scene == null)
         {
             Player_Selection.current_placable = Placeable;
             GameObject placed_object = Instantiate(Placeable);
