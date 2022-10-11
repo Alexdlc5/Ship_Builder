@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Placeable_Object : MonoBehaviour
 {
@@ -9,9 +10,13 @@ public class Placeable_Object : MonoBehaviour
     private Snapping_Point closest_point;
     private Snapping_Point second_closest_point;
     private float placement_timer = 0;
+    private EventSystem eventSystem;
+    private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
         for (int i = 0; i < surrounding_points.Length; i++)
         {
             surrounding_points[i].tag = "Untagged";
@@ -20,59 +25,71 @@ public class Placeable_Object : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Player_Selection.destruction_mode)
+        if (Submarine_Core.submode)
         {
-            Destroy(gameObject);
+            spriteRenderer.enabled = false;
         }
-        Snapping_Point_Manager.updateForNewPlacement();
-        GetComponent<BoxCollider2D>().enabled = false;
-        if (held)
+        else
         {
-            //follow the mouse while held
-            Vector3 screenCoords = Input.mousePosition;
-            screenCoords.z = Camera.main.nearClipPlane + 1;
-            transform.position = Camera.main.ScreenToWorldPoint(screenCoords);
-            setVisibility(false);
+            spriteRenderer.enabled = true;
         }
-        if (Submarine_Core.submode == false && Input.GetMouseButtonDown(0) && placement_timer > .1f)
+        //checks if pointer over UI object
+        if (!eventSystem.IsPointerOverGameObject())
         {
-            setVisibility(true);
-
-            placement_timer = 0;
-            held = false;
-            //place at closest point 
-            transform.position = closest_point.transform.position;
-            if (closest_point.gameObject.name.Equals("Submarine"))
+            if (Player_Selection.destruction_mode)
             {
-                closest_point.gameObject.tag = "Untagged";
+                Destroy(gameObject);
+            }
+            Snapping_Point_Manager.updateForNewPlacement();
+            GetComponent<BoxCollider2D>().enabled = false;
+            if (held)
+            {
+                //follow the mouse while held
+                Vector3 screenCoords = Input.mousePosition;
+                screenCoords.z = Camera.main.nearClipPlane + 1;
+                transform.position = Camera.main.ScreenToWorldPoint(screenCoords);
+                setVisibility(false);
+            }
+            if (Submarine_Core.submode == false && Input.GetMouseButtonDown(0) && placement_timer > .1f)
+            {
+                setVisibility(true);
+
+                placement_timer = 0;
+                held = false;
+                //place at closest point 
+                transform.position = closest_point.transform.position;
+                if (closest_point.gameObject.name.Equals("Submarine"))
+                {
+                    closest_point.gameObject.tag = "Untagged";
+                }
+                else
+                {
+                    Destroy(closest_point.gameObject);
+                }
+                closest_point = second_closest_point;
+                for (int i = 0; i < surrounding_points.Length; i++)
+                {
+                    surrounding_points[i].tag = "Point";
+                }
+                Snapping_Point_Manager.updateForNewPlacement();
+                setLineRen();
+                //changes to block, updates subcore, destroys placeable script
+                gameObject.tag = "Block";
+                Submarine_Core.updateBlocks();
+                gameObject.transform.parent = GameObject.Find("Submarine").transform;
+                //GetComponent<BoxCollider2D>().enabled = true;
+                //creates new placable object to place next
+                GameObject placed_object = Instantiate(Player_Selection.current_placable);
+                placed_object.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Destroy(gameObject.GetComponent<Placeable_Object>());
             }
             else
             {
-                Destroy(closest_point.gameObject);
+                setLineRen();
             }
-            closest_point = second_closest_point;
-            for (int i = 0; i < surrounding_points.Length; i++)
-            {
-                surrounding_points[i].tag = "Point";
-            }
-            Snapping_Point_Manager.updateForNewPlacement();
-            setLineRen();
-            //changes to block, updates subcore, destroys placeable script
-            gameObject.tag = "Block";
-            Submarine_Core.updateBlocks();
-            gameObject.transform.parent = GameObject.Find("Submarine").transform;
-            //GetComponent<BoxCollider2D>().enabled = true;
-            //creates new placable object to place next
-            GameObject placed_object = Instantiate(Player_Selection.current_placable);
-            placed_object.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Destroy(gameObject.GetComponent<Placeable_Object>());
+            //increment timer
+            placement_timer += Time.deltaTime;
         }
-        else 
-        {
-            setLineRen();
-        }
-        //increment timer
-        placement_timer += Time.deltaTime;
     }
 
     void findClosestSnappingPoint()

@@ -6,7 +6,7 @@ public class Line_To_Nearest_Point : MonoBehaviour
 {
     private LineRenderer line_renderer;
     public Texture2D texture;
-    private Transform[] points;
+    public Transform[] points;
 
     public static Snapping_Point closest_point;
     public static Snapping_Point second_closest_point;

@@ -98,6 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   held: 1
+  placed_by_destruction: 0
   distance_from_object: 0
 --- !u!1 &1719398354216756661
 GameObject:
@@ -197,6 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   held: 1
+  placed_by_destruction: 0
   distance_from_object: 0
 --- !u!1 &1810156280244148821
 GameObject:
@@ -297,6 +299,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   held: 1
+  placed_by_destruction: 0
   distance_from_object: 0
 --- !u!58 &6210726223303485621
 CircleCollider2D:
@@ -399,7 +402,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 0.66780746, b: 0.36320752, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -568,6 +571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   held: 1
+  placed_by_destruction: 0
   distance_from_object: 0
 --- !u!1 &3768701503395748682
 GameObject:
@@ -668,6 +672,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   held: 1
+  placed_by_destruction: 0
   distance_from_object: 0
 --- !u!58 &5950676376063963836
 CircleCollider2D:
@@ -784,6 +789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   held: 1
+  placed_by_destruction: 0
   distance_from_object: 0
 --- !u!58 &8461223942206238178
 CircleCollider2D:
@@ -899,6 +905,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   held: 1
+  placed_by_destruction: 0
   distance_from_object: 0
 --- !u!1 &8722347100361335606
 GameObject:
@@ -998,4 +1005,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   held: 1
+  placed_by_destruction: 0
   distance_from_object: 0

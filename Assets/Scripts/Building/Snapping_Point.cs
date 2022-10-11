@@ -6,26 +6,35 @@ using System;
 public class Snapping_Point : MonoBehaviour
 {
     public bool held = true;
+    public bool placed_by_destruction = false;
     public float distance_from_object;
+    private Remove remove;
+    private void Start()
+    {
+        remove = GameObject.Find("Remove_Block").GetComponent<Remove>();
+    }
     // Update is called once per frame
     void Update()
     {
-        //if (!gameObject.GetComponent<Submarine_Core>() || !GetComponentInParent<Block>())
-        //{
-        //    GameObject[] blocks = GameObject.FindGameObjectsWithTag("Block");
-        //    bool connected = false;
-        //    for (int i = 0; i < blocks.Length; i++)
-        //    {
-        //        if (Vector2.Distance(transform.position, blocks[i].transform.position) <= 1.1f)
-        //        {
-        //            connected = true;
-        //        }
-        //    }
-        //    if (!connected)
-        //    {
-        //        Destroy(gameObject);
-        //    }
-        //}
+        if (!Submarine_Core.submode && Player_Selection.destruction_mode && placed_by_destruction)
+        {
+            //thru edge blocks
+            bool hasNeighbor = false;
+            for (int i = 0; i < remove.edge_blocks.Length; i++)
+            {
+                //checks edge block locations against current points location
+                if (Vector2.Distance(remove.edge_blocks[i].transform.position, transform.position) <= 1.6f)
+                {
+                    hasNeighbor = true;
+                    continue;
+                }
+            }
+            //no Neighbor?
+            if (!hasNeighbor)
+            {
+                Destroy(gameObject);
+            }
+        }
         distance_from_object = Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition));
         if (Submarine_Core.submode == true)
         {
