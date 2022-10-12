@@ -12,9 +12,11 @@ public class Placeable_Object : MonoBehaviour
     private float placement_timer = 0;
     private EventSystem eventSystem;
     private SpriteRenderer spriteRenderer;
+    private Submarine_Core submarine;
 
     private void Start()
     {
+        submarine = GameObject.Find("Submarine").GetComponent<Submarine_Core>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         eventSystem = GameObject.Find("EventSystem").GetComponent<EventSystem>();
         for (int i = 0; i < surrounding_points.Length; i++)
@@ -73,14 +75,17 @@ public class Placeable_Object : MonoBehaviour
                 }
                 Snapping_Point_Manager.updateForNewPlacement();
                 setLineRen();
-                //changes to block, updates subcore, destroys placeable script
+                //changes to block
                 gameObject.tag = "Block";
+                //updates subcore blocks 
                 Submarine_Core.updateBlocks();
                 gameObject.transform.parent = GameObject.Find("Submarine").transform;
-                //GetComponent<BoxCollider2D>().enabled = true;
                 //creates new placable object to place next
                 GameObject placed_object = Instantiate(Player_Selection.current_placable);
                 placed_object.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                //update pivot
+                //submarine.updatePivot();
+                //destroys placeable script
                 Destroy(gameObject.GetComponent<Placeable_Object>());
             }
             else

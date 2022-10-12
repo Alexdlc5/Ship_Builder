@@ -11,6 +11,7 @@ public class Submarine_Core : MonoBehaviour
     public float acceleration_speed = 1;
     public float max_speed = 1;
     public float rotation_speed = 1;
+    public float drag = 1;
     public static GameObject[] blocks;
     private Vector2 stop_location;
     // Start is called before the first frame update
@@ -79,8 +80,104 @@ public class Submarine_Core : MonoBehaviour
                     rb.AddRelativeForce(new Vector2(-acceleration_speed, 0));
                 }
             }
+            //drag
+            if (rb.velocity.x > 0)
+            {
+                if (rb.velocity.x > drag)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x - drag, rb.velocity.y);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(0, rb.velocity.y);
+                }
+            }
+            else if (rb.velocity.x < 0)
+            {
+                if (drag - rb.velocity.x > drag)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x + drag, rb.velocity.y);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(0, rb.velocity.y);
+                }
+            }
+            if (rb.velocity.y > 0)
+            {
+                if (rb.velocity.y > drag)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - drag);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, 0);
+                }
+            }
+            else if (rb.velocity.y < 0)
+            {
+                if (drag - rb.velocity.y > drag)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + drag);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, 0);
+                }
+            }
         }
     }
+    //Not Working
+    //public void updatePivot()
+    //{
+    //    //find furthest out blocks
+    //    blocks = GameObject.FindGameObjectsWithTag("Block");
+    //    Vector2[] furthest = new Vector2[4];
+    //    for (int i = 0; i < blocks.Length; i++)
+    //    {   
+    //        //furthest up
+    //        if (blocks[i].transform.position.y > furthest[0].y)
+    //        {
+    //            furthest[0] = blocks[i].transform.position;
+    //        }
+    //        //furthest down
+    //        if (blocks[i].transform.position.y < furthest[1].y)
+    //        {
+    //            furthest[1] = blocks[i].transform.position;
+    //        }
+    //        //furthest right
+    //        if (blocks[i].transform.position.x > furthest[2].x)
+    //        {
+    //            furthest[2] = blocks[i].transform.position;
+    //        }
+    //        //furthest left
+    //        if (blocks[i].transform.position.x < furthest[3].x)
+    //        {
+    //            furthest[3] = blocks[i].transform.position;
+    //        }
+    //    }
+    //    //find distance between horizontal and vertical points
+    //    float vertical_middlepoint = Vector2.Distance(furthest[0], furthest[1]) / 2;
+    //    float horizontal_middlepoint = Vector2.Distance(furthest[2], furthest[3]) / 2;
+    //    //make new middle point vector
+    //    Vector2 middle_point = new Vector2(furthest[3].x + horizontal_middlepoint, furthest[1].y + vertical_middlepoint);
+    //    //unparent children to move game object
+    //    if (transform.childCount > 0)
+    //    {
+    //        Transform[] children = GetComponentsInChildren<Transform>();
+    //        foreach (Transform child in children)
+    //        {
+    //            child.parent = null;
+    //        }
+    //        //move to new point
+    //        transform.position = middle_point;
+    //        //reparent children
+    //        foreach (Transform child in children)
+    //        {
+    //            child.parent = transform;
+    //        }
+    //    }
+    //}
     public static void updateBlocks()
     {
         blocks = GameObject.FindGameObjectsWithTag("Block");

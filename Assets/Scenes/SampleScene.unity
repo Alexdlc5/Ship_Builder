@@ -3409,6 +3409,7 @@ MonoBehaviour:
   acceleration_speed: 10
   max_speed: 5
   rotation_speed: 1
+  drag: 0.01
 --- !u!50 &1071953193
 Rigidbody2D:
   serializedVersion: 4
