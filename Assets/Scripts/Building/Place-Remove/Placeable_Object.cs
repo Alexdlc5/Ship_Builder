@@ -13,7 +13,6 @@ public class Placeable_Object : MonoBehaviour
     private EventSystem eventSystem;
     private SpriteRenderer spriteRenderer;
     private Submarine_Core submarine;
-
     private void Start()
     {
         submarine = GameObject.Find("Submarine").GetComponent<Submarine_Core>();
@@ -84,7 +83,7 @@ public class Placeable_Object : MonoBehaviour
                 GameObject placed_object = Instantiate(Player_Selection.current_placable);
                 placed_object.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 //update pivot
-                //submarine.updatePivot();
+                submarine.updatePivot();
                 //destroys placeable script
                 Destroy(gameObject.GetComponent<Placeable_Object>());
             }

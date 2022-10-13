@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,10 @@ public class Submarine_Core : MonoBehaviour
     public float drag = 1;
     public static GameObject[] blocks;
     private Vector2 stop_location;
+
+    public float propeller_count = 0;
+    public float engine_count = 0;
+    public float cabin_count = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -81,103 +86,178 @@ public class Submarine_Core : MonoBehaviour
                 }
             }
             //drag
-            if (rb.velocity.x > 0)
+            if (!(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.LeftShift)))
             {
-                if (rb.velocity.x > drag)
+                //x drag
+                if (rb.velocity.x > 0)
                 {
-                    rb.velocity = new Vector2(rb.velocity.x - drag, rb.velocity.y);
+                    if (rb.velocity.x > drag)
+                    {
+                        rb.velocity = new Vector2(rb.velocity.x - drag, rb.velocity.y);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(0, rb.velocity.y);
+                    }
                 }
-                else
+                else if (rb.velocity.x < 0)
                 {
-                    rb.velocity = new Vector2(0, rb.velocity.y);
+                    if (drag - rb.velocity.x > drag)
+                    {
+                        rb.velocity = new Vector2(rb.velocity.x + drag, rb.velocity.y);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(0, rb.velocity.y);
+                    }
                 }
-            }
-            else if (rb.velocity.x < 0)
-            {
-                if (drag - rb.velocity.x > drag)
+                //y drag
+                if (rb.velocity.y > 0)
                 {
-                    rb.velocity = new Vector2(rb.velocity.x + drag, rb.velocity.y);
+                    if (rb.velocity.y > drag)
+                    {
+                        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - drag);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(rb.velocity.x, 0);
+                    }
                 }
-                else
+                else if (rb.velocity.y < 0)
                 {
-                    rb.velocity = new Vector2(0, rb.velocity.y);
-                }
-            }
-            if (rb.velocity.y > 0)
-            {
-                if (rb.velocity.y > drag)
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - drag);
-                }
-                else
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, 0);
-                }
-            }
-            else if (rb.velocity.y < 0)
-            {
-                if (drag - rb.velocity.y > drag)
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + drag);
-                }
-                else
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, 0);
+                    if (drag - rb.velocity.y > drag)
+                    {
+                        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + drag);
+                    }
+                    else
+                    {
+                        rb.velocity = new Vector2(rb.velocity.x, 0);
+                    }
                 }
             }
         }
     }
-    //Not Working
-    //public void updatePivot()
-    //{
-    //    //find furthest out blocks
-    //    blocks = GameObject.FindGameObjectsWithTag("Block");
-    //    Vector2[] furthest = new Vector2[4];
-    //    for (int i = 0; i < blocks.Length; i++)
-    //    {   
-    //        //furthest up
-    //        if (blocks[i].transform.position.y > furthest[0].y)
-    //        {
-    //            furthest[0] = blocks[i].transform.position;
-    //        }
-    //        //furthest down
-    //        if (blocks[i].transform.position.y < furthest[1].y)
-    //        {
-    //            furthest[1] = blocks[i].transform.position;
-    //        }
-    //        //furthest right
-    //        if (blocks[i].transform.position.x > furthest[2].x)
-    //        {
-    //            furthest[2] = blocks[i].transform.position;
-    //        }
-    //        //furthest left
-    //        if (blocks[i].transform.position.x < furthest[3].x)
-    //        {
-    //            furthest[3] = blocks[i].transform.position;
-    //        }
-    //    }
-    //    //find distance between horizontal and vertical points
-    //    float vertical_middlepoint = Vector2.Distance(furthest[0], furthest[1]) / 2;
-    //    float horizontal_middlepoint = Vector2.Distance(furthest[2], furthest[3]) / 2;
-    //    //make new middle point vector
-    //    Vector2 middle_point = new Vector2(furthest[3].x + horizontal_middlepoint, furthest[1].y + vertical_middlepoint);
-    //    //unparent children to move game object
-    //    if (transform.childCount > 0)
-    //    {
-    //        Transform[] children = GetComponentsInChildren<Transform>();
-    //        foreach (Transform child in children)
-    //        {
-    //            child.parent = null;
-    //        }
-    //        //move to new point
-    //        transform.position = middle_point;
-    //        //reparent children
-    //        foreach (Transform child in children)
-    //        {
-    //            child.parent = transform;
-    //        }
-    //    }
-    //}
+    public void addBlockStat()
+    {
+        //reset counts
+        cabin_count = 0;
+        engine_count = 0;
+        propeller_count = 0;
+
+        GameObject[] blocks = GameObject.FindGameObjectsWithTag("Block");
+        //update block counts
+        for (int i = 0; i < blocks.Length; i++)
+        {
+            if (blocks[i].GetComponent<Block>().block_function.Equals("Cabin"))
+            {
+                cabin_count++;
+            }
+            else if (blocks[i].GetComponent<Block>().block_function.Equals("Propeller"))
+            {
+                propeller_count++;
+            }
+            else if (blocks[i].GetComponent<Block>().block_function.Equals("Engine"))
+            {
+                engine_count++;
+            }
+        }
+        //update submarine stats
+        acceleration_speed = 8 + (propeller_count / 10);
+        max_speed = 1.5f + (engine_count / 10);
+        drag = 0.05f + ((cabin_count + engine_count) / 1000);
+    }
+    
+    //pivot updater v2
+    public void updatePivot()
+    {
+        GameObject[] blocks = GameObject.FindGameObjectsWithTag("Block");
+        //creates sorted list of y values
+        List<float> y_values = new List<float>();
+        for (int i = 0; i < blocks.Length; i++)
+        {
+            if (y_values.Count > 0)
+            {
+                bool value_added = false;
+                for (int j = 0; j < y_values.Count; j++)
+                {
+                    if (blocks[i].transform.position.y < y_values[j])
+                    {
+                        y_values.Insert(j, blocks[i].transform.position.y);
+                        value_added = true;
+                        break;
+                    }
+                }
+                if (!value_added)
+                {
+                    y_values.Add(blocks[i].transform.position.y);
+                }
+            }
+            else
+            {
+                y_values.Add(blocks[i].transform.position.y);
+            }
+        }
+        //creates sorted list of x values
+        List<float> x_values = new List<float>();
+        for (int i = 0; i < blocks.Length; i++)
+        {
+            if (x_values.Count > 0)
+            {
+                bool value_added = false;
+                for (int j = 0; j < x_values.Count; j++)
+                {
+                    if (blocks[i].transform.position.x < x_values[j])
+                    {
+                        x_values.Insert(j, blocks[i].transform.position.x);
+                        value_added = true;
+                        break;
+                    }
+                }
+                if (!value_added)
+                {
+                    x_values.Add(blocks[i].transform.position.x);
+                }
+            }
+            else
+            {
+                x_values.Add(blocks[i].transform.position.x);
+            }
+        }
+        //find medians
+        float x_median = getMedian(x_values);
+        float y_median = getMedian(y_values);
+        //unparent children to move game object
+        if (transform.childCount > 0)
+        {
+            Transform[] children = GetComponentsInChildren<Transform>();
+            foreach (Transform child in children)
+            {
+                child.parent = null;
+            }
+            //move to new point
+            transform.position = new Vector2(x_median, y_median); 
+            //reparent children
+            foreach (Transform child in children)
+            {
+                child.parent = transform;
+            }
+        }
+    }
+    private float getMedian(List<float> sorted_data)
+    {
+        //odd count
+        if (sorted_data.Count % 2 > 0)
+        {
+            //return median
+            return sorted_data[sorted_data.Count / 2];
+        }
+        //even count
+        else
+        {
+            //return avg of two medians
+            return ((sorted_data[sorted_data.Count / 2 - 1] + sorted_data[sorted_data.Count / 2]) /2);
+        }
+    }
     public static void updateBlocks()
     {
         blocks = GameObject.FindGameObjectsWithTag("Block");

@@ -62,7 +62,7 @@ public class Remove : MonoBehaviour
                 //set line renderer
                 setLineRen();
                 //update center of sub
-                //submarine.updatePivot();
+                submarine.updatePivot();
             }
         }
         else if (!changed_last_frame)

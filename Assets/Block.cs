@@ -8,11 +8,13 @@ public class Block : MonoBehaviour
     private Remove remove;
     private SpriteRenderer spriteRenderer;
     private Line_To_Nearest_Point LTNP;
+    public string block_function;
     private void Start()
     {
         LTNP = GameObject.Find("LineRenderer").GetComponent<Line_To_Nearest_Point>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         remove = GameObject.Find("Remove_Block").GetComponent<Remove>();
+        GameObject.Find("Submarine").GetComponent<Submarine_Core>().addBlockStat();
     }
     // Update is called once per frame
     void Update()
