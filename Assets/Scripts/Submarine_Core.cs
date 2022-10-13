@@ -53,38 +53,39 @@ public class Submarine_Core : MonoBehaviour
                 stop_location = transform.position;
             }
         }
-        if (submode)
-        {
-            if (Input.GetKey(KeyCode.A))
-            {
-                rb.MoveRotation(rb.rotation + rotation_speed);
-            }
-            if (Input.GetKey(KeyCode.D))
-            {
-                rb.MoveRotation(rb.rotation - rotation_speed);
-            }
-            if (Input.GetKey(KeyCode.Space))
-            {
-                if (speedInDirection("Horizontal", previous_location, current_location) > max_speed)
-                {
-                    rb.velocity = rb.velocity;
-                }
-                else
-                {
-                    rb.AddRelativeForce(new Vector2(acceleration_speed, 0));
-                }
-            }
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                if (speedInDirection("Horizontal", previous_location, current_location) < -max_speed)
-                {
-                    rb.velocity = rb.velocity;
-                }
-                else
-                {
-                    rb.AddRelativeForce(new Vector2(-acceleration_speed, 0));
-                }
-            }
+        //change or fix movment
+        //if (submode)
+        //{
+        //    if (Input.GetKey(KeyCode.A))
+        //    {
+        //        rb.MoveRotation(rb.rotation + rotation_speed);
+        //    }
+        //    if (Input.GetKey(KeyCode.D))
+        //    {
+        //        rb.MoveRotation(rb.rotation - rotation_speed);
+        //    }
+        //    if (Input.GetKey(KeyCode.Space))
+        //    {
+        //        if (speedInDirection("Horizontal", previous_location, current_location) > max_speed)
+        //        {
+        //            rb.velocity = rb.velocity;
+        //        }
+        //        else
+        //        {
+        //            rb.AddRelativeForce(new Vector2(acceleration_speed * Time.deltaTime * 200, 0));
+        //        }
+        //    }
+        //    if (Input.GetKey(KeyCode.LeftShift))
+        //    {
+        //        if (speedInDirection("Horizontal", previous_location, current_location) < -max_speed)
+        //        {
+        //            rb.velocity = rb.velocity;
+        //        }
+        //        else
+        //        {
+        //            rb.AddRelativeForce(new Vector2(-acceleration_speed * Time.deltaTime * 200, 0));
+        //        }
+        //    }
             //drag
             if (!(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.LeftShift)))
             {
@@ -162,9 +163,9 @@ public class Submarine_Core : MonoBehaviour
             }
         }
         //update submarine stats
-        acceleration_speed = 8 + (propeller_count / 10);
-        max_speed = 1.5f + (engine_count / 10);
-        drag = 0.05f + ((cabin_count + engine_count) / 1000);
+        acceleration_speed = 4 + (propeller_count / 10);
+        max_speed = .75f + (engine_count / 10);
+        drag = 0.055f + ((cabin_count + engine_count) / 1000);
     }
     
     //pivot updater v2
