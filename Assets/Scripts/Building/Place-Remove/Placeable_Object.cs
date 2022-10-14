@@ -13,6 +13,7 @@ public class Placeable_Object : MonoBehaviour
     private EventSystem eventSystem;
     private SpriteRenderer spriteRenderer;
     private Submarine_Core submarine;
+    public GameObject insideCabin;
     private void Start()
     {
         submarine = GameObject.Find("Submarine").GetComponent<Submarine_Core>();
@@ -84,6 +85,9 @@ public class Placeable_Object : MonoBehaviour
                 placed_object.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 //update pivot
                 submarine.updatePivot();
+                //make inside cabin vis
+                SpriteRenderer cabinSR = insideCabin.GetComponent<SpriteRenderer>();
+                cabinSR.color = new Color(cabinSR.color.r, cabinSR.color.g, cabinSR.color.b, 1);
                 //destroys placeable script
                 Destroy(gameObject.GetComponent<Placeable_Object>());
             }
@@ -154,15 +158,23 @@ public class Placeable_Object : MonoBehaviour
     }
     void setVisibility(bool visibility)
     {
+        //sets vis num
         int isvisible = 0;
         if (visibility)
         {
             isvisible = 1;
         }
-        GetComponent<SpriteRenderer>().color = new Color(GetComponent<SpriteRenderer>().color.r, GetComponent<SpriteRenderer>().color.g, GetComponent<SpriteRenderer>().color.b, isvisible);
+        //sets vis of inside cabin
+        SpriteRenderer cabinSR = insideCabin.GetComponent<SpriteRenderer>();
+        cabinSR.color = new Color(cabinSR.color.r, cabinSR.color.g, cabinSR.color.b, isvisible);
+        //sets vis of outercabin
+        SpriteRenderer mainSR = GetComponent<SpriteRenderer>();
+        mainSR.color = new Color(mainSR.color.r, mainSR.color.g, mainSR.color.b, isvisible);
+        //sets vis of points
         for (int i = 0; i < surrounding_points.Length; i++)
         {
-            surrounding_points[i].GetComponent<SpriteRenderer>().color = new Color(surrounding_points[i].GetComponent<SpriteRenderer>().color.r, surrounding_points[i].GetComponent<SpriteRenderer>().color.g, surrounding_points[i].GetComponent<SpriteRenderer>().color.b, isvisible);
+            SpriteRenderer pointSR = surrounding_points[i].GetComponent<SpriteRenderer>();
+            pointSR.color = new Color(pointSR.color.r, pointSR.color.g, pointSR.color.b, isvisible);
             surrounding_points[i].GetComponent<Snapping_Point>().held = !visibility;
         }
     }

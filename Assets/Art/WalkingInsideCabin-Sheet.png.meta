@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bad9c71df8a28624b80c0e83df9666f0
+guid: 57ba8be465676b54abbb867b83f17a5d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -66,7 +66,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 16384
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -128,13 +128,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Cabin-Sheet_0
+      name: WalkingInsideCabin-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 160
-        height: 160
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,20 +142,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a6093c4a38283604e818932602ca3a25
-      internalID: -883452761
+      spriteID: 099f9330fdb25d34d921a90d99b8d6de
+      internalID: 557035615
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cabin-Sheet_1
+      name: WalkingInsideCabin-Sheet_1
       rect:
         serializedVersion: 2
-        x: 160
+        x: 192
         y: 0
-        width: 160
-        height: 160
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -163,20 +163,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 982fb57970c4c054eb39bff04c3cfb29
-      internalID: 1114450720
+      spriteID: 93b009e19868a4345b34c00e52c8e5a8
+      internalID: 569031184
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cabin-Sheet_2
+      name: WalkingInsideCabin-Sheet_2
       rect:
         serializedVersion: 2
-        x: 320
+        x: 384
         y: 0
-        width: 160
-        height: 160
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -184,20 +184,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9adbbc5b73be694f83932eeda548249
-      internalID: 1334567295
+      spriteID: 956bb21579a3ace4b96f85d1a7edfe45
+      internalID: -394176057
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cabin-Sheet_3
+      name: WalkingInsideCabin-Sheet_3
       rect:
         serializedVersion: 2
-        x: 480
+        x: 576
         y: 0
-        width: 160
-        height: 160
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -205,20 +205,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9f02a10bb5fd99845bf3a8d9ae7ea995
-      internalID: 732981725
+      spriteID: adf10762f8d191944920fbadac23e295
+      internalID: 1915049539
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cabin-Sheet_4
+      name: WalkingInsideCabin-Sheet_4
       rect:
         serializedVersion: 2
-        x: 640
+        x: 768
         y: 0
-        width: 160
-        height: 160
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -226,41 +226,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4df6e61729e967545a9cac7b43f73a98
-      internalID: -968374517
+      spriteID: 9ada9f41ba27dc74c9e210cfaa67467d
+      internalID: -998490024
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cabin-Sheet_5
-      rect:
-        serializedVersion: 2
-        x: 800
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1e8bdcbb355c2b346a6de84a8679236d
-      internalID: 126428776
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cabin-Sheet_6
+      name: WalkingInsideCabin-Sheet_5
       rect:
         serializedVersion: 2
         x: 960
         y: 0
-        width: 160
-        height: 160
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -268,20 +247,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6fbf6c3207f28544194ae76aaab71a6f
-      internalID: 1233895377
+      spriteID: 3336bbd8af1e37c4aaafa8421b848590
+      internalID: -2000797962
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cabin-Sheet_7
+      name: WalkingInsideCabin-Sheet_6
       rect:
         serializedVersion: 2
-        x: 1120
+        x: 1152
         y: 0
-        width: 160
-        height: 160
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -289,20 +268,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 60796dc48b9b2434d857837657075a7d
-      internalID: 1217748898
+      spriteID: ef760d14afa2bcc468d2ec367d62727b
+      internalID: 771637301
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cabin-Sheet_8
+      name: WalkingInsideCabin-Sheet_7
       rect:
         serializedVersion: 2
-        x: 1280
+        x: 1344
         y: 0
-        width: 160
-        height: 160
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -310,20 +289,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 57df0f66a664cca4aa427ffae409c2d6
-      internalID: 1795896895
+      spriteID: 9c1122dddfb91f84a9d32fcc9be8625c
+      internalID: 780508723
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cabin-Sheet_9
+      name: WalkingInsideCabin-Sheet_8
       rect:
         serializedVersion: 2
-        x: 1440
+        x: 1536
         y: 0
-        width: 160
-        height: 160
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -331,20 +310,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c6cf5ff24a859ec469e0e3b3140f0a1e
-      internalID: -60853801
+      spriteID: 3a5726e3405204b4bafb79b171d5fa0a
+      internalID: 457198667
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cabin-Sheet_10
+      name: WalkingInsideCabin-Sheet_9
       rect:
         serializedVersion: 2
-        x: 1600
+        x: 1728
         y: 0
-        width: 160
-        height: 160
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -352,41 +331,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8cf1a218c8e42c04c94426166cd7c0a2
-      internalID: -872754450
+      spriteID: 433e68aeaab334b45974f6b0d9566cf4
+      internalID: 1389982170
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cabin-Sheet_11
-      rect:
-        serializedVersion: 2
-        x: 1760
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 50ddbc20e66f1684c8f467104e911f1c
-      internalID: -58714809
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cabin-Sheet_12
+      name: WalkingInsideCabin-Sheet_10
       rect:
         serializedVersion: 2
         x: 1920
         y: 0
-        width: 160
-        height: 160
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -394,20 +352,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0706444ba097e354f8cccacd84c1b29a
-      internalID: 1626876945
+      spriteID: 70238227f3aa9ca42b7831789602ddd7
+      internalID: 488315527
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cabin-Sheet_13
+      name: WalkingInsideCabin-Sheet_11
       rect:
         serializedVersion: 2
-        x: 2080
+        x: 2112
         y: 0
-        width: 160
-        height: 160
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -415,20 +373,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c8dee18b2ab349e4392e9eb5ea773dd6
-      internalID: -1419284321
+      spriteID: d5b575850aa42ee428641f37c42b3336
+      internalID: -667390249
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cabin-Sheet_14
+      name: WalkingInsideCabin-Sheet_12
       rect:
         serializedVersion: 2
-        x: 2240
+        x: 2304
         y: 0
-        width: 160
-        height: 160
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -436,20 +394,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3d2c1970ba152ed48b12a459fa7a15ac
-      internalID: 2125309419
+      spriteID: 20f70e549dd3bd04a810b7d5511047be
+      internalID: -1465042276
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cabin-Sheet_15
+      name: WalkingInsideCabin-Sheet_13
       rect:
         serializedVersion: 2
-        x: 2400
+        x: 2496
         y: 0
-        width: 160
-        height: 160
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -457,20 +415,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e7e4f49e95576e14c9328fb9d1ea0562
-      internalID: -1918639874
+      spriteID: 94fde30378e53fb4083589458e679364
+      internalID: -206409238
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cabin-Sheet_16
+      name: WalkingInsideCabin-Sheet_14
       rect:
         serializedVersion: 2
-        x: 2560
+        x: 2688
         y: 0
-        width: 160
-        height: 160
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -478,41 +436,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f604a81b33f093747b2adbd07eeaed34
-      internalID: 461117020
+      spriteID: 64fef6494ce261343aaf47890f8a9444
+      internalID: -646864995
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Cabin-Sheet_17
-      rect:
-        serializedVersion: 2
-        x: 2720
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1cc2a3c404c01c6469b2b25955c76627
-      internalID: 1692683366
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cabin-Sheet_18
+      name: WalkingInsideCabin-Sheet_15
       rect:
         serializedVersion: 2
         x: 2880
         y: 0
-        width: 160
-        height: 160
+        width: 192
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -520,134 +457,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab12a317f8771874bb30a76874487cc5
-      internalID: -1992390851
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cabin-Sheet_19
-      rect:
-        serializedVersion: 2
-        x: 3040
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9bac88090d7dc9f4a9deb15cab419ec4
-      internalID: -1005376107
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cabin-Sheet_20
-      rect:
-        serializedVersion: 2
-        x: 3200
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8640f12ff84f5ee49939368957db7e67
-      internalID: 1192882287
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cabin-Sheet_21
-      rect:
-        serializedVersion: 2
-        x: 3360
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6f44c681432074543aa777fb9a39f4c8
-      internalID: -878494012
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cabin-Sheet_22
-      rect:
-        serializedVersion: 2
-        x: 3520
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9cccd8930dd125e4494db9f7723ab9dd
-      internalID: -1326251242
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cabin-Sheet_23
-      rect:
-        serializedVersion: 2
-        x: 3680
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f87fbe46b597b394fa63491992862667
-      internalID: 177889666
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Cabin-Sheet_24
-      rect:
-        serializedVersion: 2
-        x: 3840
-        y: 0
-        width: 160
-        height: 160
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4ab386922c772794696ba130fb784999
-      internalID: -1926381609
+      spriteID: ca0a379d8f67e8c4eab5f25b8941d82d
+      internalID: 731995274
       vertices: []
       indices: 
       edges: []
@@ -663,31 +474,22 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Cabin-Sheet_0: -883452761
-      Cabin-Sheet_18: -1992390851
-      Cabin-Sheet_22: -1326251242
-      Cabin-Sheet_3: 732981725
-      Cabin-Sheet_23: 177889666
-      Cabin-Sheet_6: 1233895377
-      Cabin-Sheet_7: 1217748898
-      Cabin-Sheet_15: -1918639874
-      Cabin-Sheet_4: -968374517
-      Cabin-Sheet_24: -1926381609
-      Cabin-Sheet_5: 126428776
-      Cabin-Sheet_12: 1626876945
-      Cabin-Sheet_13: -1419284321
-      Cabin-Sheet_2: 1334567295
-      Cabin-Sheet_17: 1692683366
-      Cabin-Sheet_11: -58714809
-      Cabin-Sheet_14: 2125309419
-      Cabin-Sheet_19: -1005376107
-      Cabin-Sheet_10: -872754450
-      Cabin-Sheet_1: 1114450720
-      Cabin-Sheet_9: -60853801
-      Cabin-Sheet_16: 461117020
-      Cabin-Sheet_8: 1795896895
-      Cabin-Sheet_20: 1192882287
-      Cabin-Sheet_21: -878494012
+      WalkingInsideCabin-Sheet_5: -2000797962
+      WalkingInsideCabin-Sheet_13: -206409238
+      WalkingInsideCabin-Sheet_9: 1389982170
+      WalkingInsideCabin-Sheet_1: 569031184
+      WalkingInsideCabin-Sheet_11: -667390249
+      WalkingInsideCabin-Sheet_12: -1465042276
+      WalkingInsideCabin-Sheet_0: 557035615
+      WalkingInsideCabin-Sheet_7: 780508723
+      WalkingInsideCabin-Sheet_4: -998490024
+      WalkingInsideCabin-Sheet_14: -646864995
+      WalkingInsideCabin-Sheet_3: 1915049539
+      WalkingInsideCabin-Sheet_10: 488315527
+      WalkingInsideCabin-Sheet_6: 771637301
+      WalkingInsideCabin-Sheet_2: -394176057
+      WalkingInsideCabin-Sheet_15: 731995274
+      WalkingInsideCabin-Sheet_8: 457198667
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

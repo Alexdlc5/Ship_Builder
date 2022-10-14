@@ -86,54 +86,53 @@ public class Submarine_Core : MonoBehaviour
         //            rb.AddRelativeForce(new Vector2(-acceleration_speed * Time.deltaTime * 200, 0));
         //        }
         //    }
-            //drag
-            if (!(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.LeftShift)))
+        //drag
+        if (!(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.LeftShift)))
+        {
+            //x drag
+            if (rb.velocity.x > 0)
             {
-                //x drag
-                if (rb.velocity.x > 0)
+                if (rb.velocity.x > drag)
                 {
-                    if (rb.velocity.x > drag)
-                    {
-                        rb.velocity = new Vector2(rb.velocity.x - drag, rb.velocity.y);
-                    }
-                    else
-                    {
-                        rb.velocity = new Vector2(0, rb.velocity.y);
-                    }
+                    rb.velocity = new Vector2(rb.velocity.x - drag, rb.velocity.y);
                 }
-                else if (rb.velocity.x < 0)
+                else
                 {
-                    if (drag - rb.velocity.x > drag)
-                    {
-                        rb.velocity = new Vector2(rb.velocity.x + drag, rb.velocity.y);
-                    }
-                    else
-                    {
-                        rb.velocity = new Vector2(0, rb.velocity.y);
-                    }
+                    rb.velocity = new Vector2(0, rb.velocity.y);
                 }
-                //y drag
-                if (rb.velocity.y > 0)
+            }
+            else if (rb.velocity.x < 0)
+            {
+                if (drag - rb.velocity.x > drag)
                 {
-                    if (rb.velocity.y > drag)
-                    {
-                        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - drag);
-                    }
-                    else
-                    {
-                        rb.velocity = new Vector2(rb.velocity.x, 0);
-                    }
+                    rb.velocity = new Vector2(rb.velocity.x + drag, rb.velocity.y);
                 }
-                else if (rb.velocity.y < 0)
+                else
                 {
-                    if (drag - rb.velocity.y > drag)
-                    {
-                        rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + drag);
-                    }
-                    else
-                    {
-                        rb.velocity = new Vector2(rb.velocity.x, 0);
-                    }
+                    rb.velocity = new Vector2(0, rb.velocity.y);
+                }
+            }
+            //y drag
+            if (rb.velocity.y > 0)
+            {
+                if (rb.velocity.y > drag)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - drag);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, 0);
+                }
+            }
+            else if (rb.velocity.y < 0)
+            {
+                if (drag - rb.velocity.y > drag)
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + drag);
+                }
+                else
+                {
+                    rb.velocity = new Vector2(rb.velocity.x, 0);
                 }
             }
         }
