@@ -113,6 +113,7 @@ GameObject:
   - component: {fileID: 1947415272403409149}
   - component: {fileID: 1947415272403409146}
   - component: {fileID: -7368877201472012379}
+  - component: {fileID: 8406708949530736575}
   m_Layer: 0
   m_Name: Cabin_Block
   m_TagString: Snapable
@@ -224,7 +225,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.009472132, y: -0.000000059604645}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -235,7 +236,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2.0798254, y: 2.0608811}
   m_EdgeRadius: 0
 --- !u!114 &-7368877201472012379
 MonoBehaviour:
@@ -251,6 +252,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distance: 0
   block_function: Cabin
+--- !u!114 &8406708949530736575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1947415272403409147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d3eabe12271de24c8b77fbd9c037d31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CabinTypes:
+  - {fileID: 21300000, guid: 2201fb50fcb152140930a213ac19637e, type: 3}
+  - {fileID: 21300000, guid: d64147a697defc04b83e0b760ad94345, type: 3}
 --- !u!1 &2232829401427571511
 GameObject:
   m_ObjectHideFlags: 0

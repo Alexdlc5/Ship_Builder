@@ -8,6 +8,7 @@ TagManager:
   - Point
   - SnappingPointsManager
   - Block
+  - Tile
   layers:
   - Default
   - TransparentFX

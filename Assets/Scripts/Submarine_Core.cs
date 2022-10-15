@@ -41,7 +41,6 @@ public class Submarine_Core : MonoBehaviour
     {
         previous_location = current_location;
         current_location = transform.localPosition;
-        Debug.DrawLine(previous_location, current_location);
 
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -51,91 +50,105 @@ public class Submarine_Core : MonoBehaviour
                 transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
                 rb.velocity = Vector3.zero;
                 stop_location = transform.position;
+                GameObject[] blocks = GameObject.FindGameObjectsWithTag("Block");
+                for (int i = 0; i < blocks.Length; i++)
+                {
+                    blocks[i].GetComponent<Collider2D>().enabled = false;
+                }
+            }
+            else
+            {
+                GameObject[] blocks = GameObject.FindGameObjectsWithTag("Block");
+                for (int i = 0; i < blocks.Length; i++)
+                {
+                    blocks[i].GetComponent<Collider2D>().enabled = true;
+                }
             }
         }
         //change or fix movment
-        //if (submode)
-        //{
-        //    if (Input.GetKey(KeyCode.A))
-        //    {
-        //        rb.MoveRotation(rb.rotation + rotation_speed);
-        //    }
-        //    if (Input.GetKey(KeyCode.D))
-        //    {
-        //        rb.MoveRotation(rb.rotation - rotation_speed);
-        //    }
-        //    if (Input.GetKey(KeyCode.Space))
-        //    {
-        //        if (speedInDirection("Horizontal", previous_location, current_location) > max_speed)
-        //        {
-        //            rb.velocity = rb.velocity;
-        //        }
-        //        else
-        //        {
-        //            rb.AddRelativeForce(new Vector2(acceleration_speed * Time.deltaTime * 200, 0));
-        //        }
-        //    }
-        //    if (Input.GetKey(KeyCode.LeftShift))
-        //    {
-        //        if (speedInDirection("Horizontal", previous_location, current_location) < -max_speed)
-        //        {
-        //            rb.velocity = rb.velocity;
-        //        }
-        //        else
-        //        {
-        //            rb.AddRelativeForce(new Vector2(-acceleration_speed * Time.deltaTime * 200, 0));
-        //        }
-        //    }
-        //drag
-        if (!(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.LeftShift)))
+        if (submode)
         {
-            //x drag
-            if (rb.velocity.x > 0)
+            if (Input.GetKey(KeyCode.A))
             {
-                if (rb.velocity.x > drag)
+                rb.MoveRotation(rb.rotation + rotation_speed);
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                rb.MoveRotation(rb.rotation - rotation_speed);
+            }
+            if (Input.GetKey(KeyCode.Space))
+            {
+                if (speedInDirection("Horizontal", previous_location, current_location) > max_speed)
                 {
-                    rb.velocity = new Vector2(rb.velocity.x - drag, rb.velocity.y);
+                    rb.velocity = rb.velocity;
                 }
                 else
                 {
-                    rb.velocity = new Vector2(0, rb.velocity.y);
+                    rb.AddRelativeForce(Vector2.right * acceleration_speed * Time.deltaTime * 200, 0);
                 }
             }
-            else if (rb.velocity.x < 0)
+            if (Input.GetKey(KeyCode.LeftShift))
             {
-                if (drag - rb.velocity.x > drag)
+                if (speedInDirection("Horizontal", previous_location, current_location) < -max_speed)
                 {
-                    rb.velocity = new Vector2(rb.velocity.x + drag, rb.velocity.y);
+                    rb.velocity = rb.velocity;
                 }
                 else
                 {
-                    rb.velocity = new Vector2(0, rb.velocity.y);
+                    rb.AddRelativeForce(Vector2.left * acceleration_speed * Time.deltaTime * 200, 0);
                 }
             }
-            //y drag
-            if (rb.velocity.y > 0)
-            {
-                if (rb.velocity.y > drag)
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - drag);
-                }
-                else
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, 0);
-                }
-            }
-            else if (rb.velocity.y < 0)
-            {
-                if (drag - rb.velocity.y > drag)
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + drag);
-                }
-                else
-                {
-                    rb.velocity = new Vector2(rb.velocity.x, 0);
-                }
-            }
-        }
+        }   
+        //drag
+        //if (!(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.LeftShift)))
+        //{
+        //    //x drag
+        //    if (rb.velocity.x > 0)
+        //    {
+        //        if (rb.velocity.x > drag)
+        //        {
+        //            rb.velocity = new Vector2(rb.velocity.x - drag, rb.velocity.y);
+        //        }
+        //        else
+        //        {
+        //            rb.velocity = new Vector2(0, rb.velocity.y);
+        //        }
+        //    }
+        //    else if (rb.velocity.x < 0)
+        //    {
+        //        if (drag - rb.velocity.x > drag)
+        //        {
+        //            rb.velocity = new Vector2(rb.velocity.x + drag, rb.velocity.y);
+        //        }
+        //        else
+        //        {
+        //            rb.velocity = new Vector2(0, rb.velocity.y);
+        //        }
+        //    }
+        //    //y drag
+        //    if (rb.velocity.y > 0)
+        //    {
+        //        if (rb.velocity.y > drag)
+        //        {
+        //            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - drag);
+        //        }
+        //        else
+        //        {
+        //            rb.velocity = new Vector2(rb.velocity.x, 0);
+        //        }
+        //    }
+        //    else if (rb.velocity.y < 0)
+        //    {
+        //        if (drag - rb.velocity.y > drag)
+        //        {
+        //            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + drag);
+        //        }
+        //        else
+        //        {
+        //            rb.velocity = new Vector2(rb.velocity.x, 0);
+        //        }
+        //    }
+        //}
     }
     public void addBlockStat()
     {
@@ -162,9 +175,9 @@ public class Submarine_Core : MonoBehaviour
             }
         }
         //update submarine stats
-        acceleration_speed = 4 + (propeller_count / 10);
-        max_speed = .75f + (engine_count / 10);
-        drag = 0.055f + ((cabin_count + engine_count) / 1000);
+        acceleration_speed = 2 + (propeller_count / 10);
+        max_speed = 1 + (engine_count / 10);
+        drag = 0.05f + ((cabin_count + engine_count) / 1000);
     }
     
     //pivot updater v2

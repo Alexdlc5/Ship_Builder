@@ -85,9 +85,12 @@ public class Placeable_Object : MonoBehaviour
                 placed_object.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 //update pivot
                 submarine.updatePivot();
-                //make inside cabin vis
-                SpriteRenderer cabinSR = insideCabin.GetComponent<SpriteRenderer>();
-                cabinSR.color = new Color(cabinSR.color.r, cabinSR.color.g, cabinSR.color.b, 1);
+                if (insideCabin != null)
+                {
+                    //make inside cabin vis
+                    SpriteRenderer cabinSR = insideCabin.GetComponent<SpriteRenderer>();
+                    cabinSR.color = new Color(cabinSR.color.r, cabinSR.color.g, cabinSR.color.b, 1);
+                }
                 //destroys placeable script
                 Destroy(gameObject.GetComponent<Placeable_Object>());
             }
@@ -164,9 +167,12 @@ public class Placeable_Object : MonoBehaviour
         {
             isvisible = 1;
         }
-        //sets vis of inside cabin
-        SpriteRenderer cabinSR = insideCabin.GetComponent<SpriteRenderer>();
-        cabinSR.color = new Color(cabinSR.color.r, cabinSR.color.g, cabinSR.color.b, isvisible);
+        if (insideCabin != null)
+        {
+            //sets vis of inside cabin
+            SpriteRenderer cabinSR = insideCabin.GetComponent<SpriteRenderer>();
+            cabinSR.color = new Color(cabinSR.color.r, cabinSR.color.g, cabinSR.color.b, isvisible);
+        }
         //sets vis of outercabin
         SpriteRenderer mainSR = GetComponent<SpriteRenderer>();
         mainSR.color = new Color(mainSR.color.r, mainSR.color.g, mainSR.color.b, isvisible);
