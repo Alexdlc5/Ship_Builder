@@ -68,6 +68,11 @@ public class Submarine_Core : MonoBehaviour
         //change or fix movment
         if (submode)
         {
+            bool any_key_pressed = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.LeftShift);
+            if (any_key_pressed)
+            {
+                rb.angularVelocity = 0;
+            }
             if (Input.GetKey(KeyCode.A))
             {
                 rb.MoveRotation(rb.rotation + rotation_speed);
