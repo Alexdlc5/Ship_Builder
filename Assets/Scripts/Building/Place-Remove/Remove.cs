@@ -46,7 +46,36 @@ public class Remove : MonoBehaviour
             if (timer > .5f && GameObject.FindGameObjectsWithTag("Block").Length > 1)
             {
                 Vector2 point_placement_position = closest_block.transform.position;
-                //remove closest block (closest block locked during placement)
+                //remove the inside of closest block
+                GameObject[] inside_blocks = GameObject.FindGameObjectsWithTag("InsideBlock");
+                for (int i = 0; i < inside_blocks.Length; i++)
+                {
+                    if (closest_block.transform.position == inside_blocks[i].transform.position)
+                    {
+                        Destroy(inside_blocks[i]);
+                        break;
+                    }
+                }
+                //remove surrounding points
+                //get array of points and block position
+                GameObject[] points = GameObject.FindGameObjectsWithTag("Point");
+                Vector3 close_block_pos = closest_block.transform.position;
+                for (int i = 0; i < points.Length; i++)
+                {
+                   //get positions of point
+                    Vector2 point_pos = (Vector2)points[i].transform.position;
+                    //checks if point is next to block being destroyed
+                    bool isAbove = new Vector2(close_block_pos.x, close_block_pos.y + 1) == point_pos;
+                    bool isBelow = new Vector2(close_block_pos.x, close_block_pos.y - 1) == point_pos;
+                    bool isRight = new Vector2(close_block_pos.x + 1, close_block_pos.y) == point_pos;
+                    bool isLeft = new Vector2(close_block_pos.x - 1, close_block_pos.y) == point_pos;
+                    //if so destroy point
+                    if (isAbove || isBelow || isRight || isLeft)
+                    {
+                        Destroy(points[i]);
+                    }
+                }
+                //remove closest block 
                 Destroy(closest_block);
                 //place snapping point 
                 GameObject newPoint = Instantiate(snapping_point);

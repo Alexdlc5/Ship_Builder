@@ -103,57 +103,7 @@ public class Submarine_Core : MonoBehaviour
                     rb.AddRelativeForce(Vector2.left * acceleration_speed * Time.deltaTime * 200, 0);
                 }
             }
-        }   
-        //drag
-        //if (!(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.LeftShift)))
-        //{
-        //    //x drag
-        //    if (rb.velocity.x > 0)
-        //    {
-        //        if (rb.velocity.x > drag)
-        //        {
-        //            rb.velocity = new Vector2(rb.velocity.x - drag, rb.velocity.y);
-        //        }
-        //        else
-        //        {
-        //            rb.velocity = new Vector2(0, rb.velocity.y);
-        //        }
-        //    }
-        //    else if (rb.velocity.x < 0)
-        //    {
-        //        if (drag - rb.velocity.x > drag)
-        //        {
-        //            rb.velocity = new Vector2(rb.velocity.x + drag, rb.velocity.y);
-        //        }
-        //        else
-        //        {
-        //            rb.velocity = new Vector2(0, rb.velocity.y);
-        //        }
-        //    }
-        //    //y drag
-        //    if (rb.velocity.y > 0)
-        //    {
-        //        if (rb.velocity.y > drag)
-        //        {
-        //            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y - drag);
-        //        }
-        //        else
-        //        {
-        //            rb.velocity = new Vector2(rb.velocity.x, 0);
-        //        }
-        //    }
-        //    else if (rb.velocity.y < 0)
-        //    {
-        //        if (drag - rb.velocity.y > drag)
-        //        {
-        //            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y + drag);
-        //        }
-        //        else
-        //        {
-        //            rb.velocity = new Vector2(rb.velocity.x, 0);
-        //        }
-        //    }
-        //}
+        }  
     }
     public void addBlockStat()
     {
@@ -180,9 +130,9 @@ public class Submarine_Core : MonoBehaviour
             }
         }
         //update submarine stats
-        acceleration_speed = 2 + (propeller_count / 10);
-        max_speed = 1 + (engine_count / 10);
-        drag = 0.05f + ((cabin_count + engine_count) / 1000);
+        acceleration_speed = 2 + (engine_count / 20) + (propeller_count / 20);
+        rotation_speed = 1 + (propeller_count / 10);
+        max_speed = 1;
     }
     
     //pivot updater v2
