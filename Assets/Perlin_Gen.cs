@@ -10,7 +10,8 @@ public class Perlin_Gen : MonoBehaviour
     public GameObject slantworldTile;
     public float perlin_scale = 1;
     public float generation_threshold = 1;
-    public float generation_density_gradient = 1000.555f;
+    public float generation_density_gradient_V = 1000.555f;
+    public float generation_density_gradient_H = 1000.555f;
     public float grid_height = 300;
     public float grid_width = 200;
     float ran_offset_x;
@@ -40,16 +41,25 @@ public class Perlin_Gen : MonoBehaviour
             //thru x axis
             for (int x = 0; x < grid_width; x++)
             {
+                float distance_from_center = Mathf.Abs((grid_width / 2) - x);
                 //if perlin value above threshold
-                if (Mathf.PerlinNoise(ran_offset_x + x / perlin_scale, ran_offset_y + y / perlin_scale) <= generation_threshold - y / generation_density_gradient)
+                if (Mathf.PerlinNoise(ran_offset_x + x / perlin_scale, ran_offset_y + y / perlin_scale) <= generation_threshold - (y / generation_density_gradient_V) + (distance_from_center / generation_density_gradient_H))
                 {
-                    GameObject tile = Instantiate(worldTile);
-                    tile.transform.parent = transform;
-                    tile.transform.localPosition = new Vector2(x, y);
-                    tile_positions.Add(new Vector2(x, y));
+                    createTile(x, y);
+                } 
+                else if (x == 0 || x == grid_width - 1 || y == 0)
+                {
+                    createTile(x, y);
                 }
             }
         }
+    }
+    void createTile(float x, float y)
+    {
+        GameObject tile = Instantiate(worldTile);
+        tile.transform.parent = transform;
+        tile.transform.localPosition = new Vector2(x, y);
+        tile_positions.Add(new Vector2(x, y));
     }
     void generate_slants()
     {

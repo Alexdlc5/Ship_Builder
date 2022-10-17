@@ -68,6 +68,15 @@ public class Submarine_Core : MonoBehaviour
         //change or fix movment
         if (submode)
         {
+            //gravity if out of water
+            if (transform.position.y > 299)
+            {
+                rb.gravityScale = 1;
+            }
+            else
+            {
+                rb.gravityScale = 0;
+            }
             bool any_key_pressed = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.LeftShift);
             if (any_key_pressed)
             {
@@ -139,62 +148,69 @@ public class Submarine_Core : MonoBehaviour
     public void updatePivot()
     {
         GameObject[] blocks = GameObject.FindGameObjectsWithTag("Block");
-        //creates sorted list of y values
-        List<float> y_values = new List<float>();
-        for (int i = 0; i < blocks.Length; i++)
+        if (blocks.Length > 1)
         {
-            if (y_values.Count > 0)
+            //creates sorted list of y values
+            List<float> y_values = new List<float>();
+            for (int i = 0; i < blocks.Length; i++)
             {
-                bool value_added = false;
-                for (int j = 0; j < y_values.Count; j++)
+                if (y_values.Count > 0)
                 {
-                    if (blocks[i].transform.position.y < y_values[j])
+                    bool value_added = false;
+                    for (int j = 0; j < y_values.Count; j++)
                     {
-                        y_values.Insert(j, blocks[i].transform.position.y);
-                        value_added = true;
-                        break;
+                        if (blocks[i].transform.position.y < y_values[j])
+                        {
+                            y_values.Insert(j, blocks[i].transform.position.y);
+                            value_added = true;
+                            break;
+                        }
+                    }
+                    if (!value_added)
+                    {
+                        y_values.Add(blocks[i].transform.position.y);
                     }
                 }
-                if (!value_added)
+                else
                 {
                     y_values.Add(blocks[i].transform.position.y);
                 }
             }
-            else
+            //creates sorted list of x values
+            List<float> x_values = new List<float>();
+            for (int i = 0; i < blocks.Length; i++)
             {
-                y_values.Add(blocks[i].transform.position.y);
-            }
-        }
-        //creates sorted list of x values
-        List<float> x_values = new List<float>();
-        for (int i = 0; i < blocks.Length; i++)
-        {
-            if (x_values.Count > 0)
-            {
-                bool value_added = false;
-                for (int j = 0; j < x_values.Count; j++)
+                if (x_values.Count > 0)
                 {
-                    if (blocks[i].transform.position.x < x_values[j])
+                    bool value_added = false;
+                    for (int j = 0; j < x_values.Count; j++)
                     {
-                        x_values.Insert(j, blocks[i].transform.position.x);
-                        value_added = true;
-                        break;
+                        if (blocks[i].transform.position.x < x_values[j])
+                        {
+                            x_values.Insert(j, blocks[i].transform.position.x);
+                            value_added = true;
+                            break;
+                        }
+                    }
+                    if (!value_added)
+                    {
+                        x_values.Add(blocks[i].transform.position.x);
                     }
                 }
-                if (!value_added)
+                else
                 {
                     x_values.Add(blocks[i].transform.position.x);
                 }
             }
-            else
-            {
-                x_values.Add(blocks[i].transform.position.x);
-            }
+            movePivot(getMedian(x_values), getMedian(y_values));
         }
-        //find medians
-        float x_median = getMedian(x_values);
-        float y_median = getMedian(y_values);
-        //unparent children to move game object
+        else
+        {
+            movePivot(0, 0);
+        }
+    }
+    private void movePivot(float x, float y)
+    {
         if (transform.childCount > 0)
         {
             Transform[] children = GetComponentsInChildren<Transform>();
@@ -203,7 +219,7 @@ public class Submarine_Core : MonoBehaviour
                 child.parent = null;
             }
             //move to new point
-            transform.position = new Vector2(x_median, y_median); 
+            transform.position = new Vector2(x, y);
             //reparent children
             foreach (Transform child in children)
             {

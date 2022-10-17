@@ -57,6 +57,8 @@ public class Remove : MonoBehaviour
                     }
                 }
                 //remove surrounding points
+                //get array of blocks 
+                GameObject[] blocks = GameObject.FindGameObjectsWithTag("Block");
                 //get array of points and block position
                 GameObject[] points = GameObject.FindGameObjectsWithTag("Point");
                 Vector3 close_block_pos = closest_block.transform.position;
@@ -69,10 +71,21 @@ public class Remove : MonoBehaviour
                     bool isBelow = new Vector2(close_block_pos.x, close_block_pos.y - 1) == point_pos;
                     bool isRight = new Vector2(close_block_pos.x + 1, close_block_pos.y) == point_pos;
                     bool isLeft = new Vector2(close_block_pos.x - 1, close_block_pos.y) == point_pos;
-                    //if so destroy point
                     if (isAbove || isBelow || isRight || isLeft)
                     {
-                        Destroy(points[i]);
+                        bool dont_destroy = false;
+                        for (int j = 0; j < blocks.Length; j++)
+                        {
+                            if (Vector2.Distance(blocks[j].transform.position, points[i].transform.position) <= 1.1f && blocks[j].transform.position != close_block_pos)
+                            {
+                                dont_destroy = true;
+                                break;
+                            }
+                        }
+                        if (!dont_destroy)
+                        {
+                            Destroy(points[i]);
+                        }
                     }
                 }
                 //remove closest block 

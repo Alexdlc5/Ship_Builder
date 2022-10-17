@@ -10,6 +10,7 @@ TagManager:
   - Block
   - Tile
   - InsideBlock
+  - Overlay
   layers:
   - Default
   - TransparentFX
