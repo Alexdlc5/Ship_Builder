@@ -69,9 +69,9 @@ public class Submarine_Core : MonoBehaviour
         if (submode)
         {
             //gravity if out of water
-            if (transform.position.y > 299)
+            if (transform.position.y > 67)
             {
-                rb.gravityScale = 1;
+                rb.gravityScale = 2;
             }
             else
             {
@@ -206,7 +206,7 @@ public class Submarine_Core : MonoBehaviour
         }
         else
         {
-            movePivot(0, 0);
+            movePivot(0, 70);
         }
     }
     private void movePivot(float x, float y)

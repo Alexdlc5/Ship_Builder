@@ -71,7 +71,11 @@ public class Remove : MonoBehaviour
                     bool isBelow = new Vector2(close_block_pos.x, close_block_pos.y - 1) == point_pos;
                     bool isRight = new Vector2(close_block_pos.x + 1, close_block_pos.y) == point_pos;
                     bool isLeft = new Vector2(close_block_pos.x - 1, close_block_pos.y) == point_pos;
-                    if (isAbove || isBelow || isRight || isLeft)
+                    bool isAboveRight = new Vector2(close_block_pos.x + 1, close_block_pos.y + 1) == point_pos;
+                    bool isBelowLeft = new Vector2(close_block_pos.x - 1, close_block_pos.y - 1) == point_pos;
+                    bool isRightBelow = new Vector2(close_block_pos.x + 1, close_block_pos.y - 1) == point_pos;
+                    bool isLeftAbove = new Vector2(close_block_pos.x - 1, close_block_pos.y + 1) == point_pos;
+                    if (isAbove || isBelow || isRight || isLeft || isAboveRight || isBelowLeft || isRightBelow || isLeftAbove)
                     {
                         bool dont_destroy = false;
                         for (int j = 0; j < blocks.Length; j++)
