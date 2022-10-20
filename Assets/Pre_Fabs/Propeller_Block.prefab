@@ -427,7 +427,7 @@ MonoBehaviour:
   - {fileID: 8933414027273516564}
   - {fileID: 4185151217722686943}
   - {fileID: 2913398033860425760}
-  insideCabin: {fileID: 0}
+  insideCabin: []
 --- !u!61 &4540651711429051473
 BoxCollider2D:
   m_ObjectHideFlags: 0

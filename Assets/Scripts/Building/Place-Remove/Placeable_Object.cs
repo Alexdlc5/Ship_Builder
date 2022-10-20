@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering.Universal;
 
 public class Placeable_Object : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class Placeable_Object : MonoBehaviour
     private EventSystem eventSystem;
     private SpriteRenderer spriteRenderer;
     private Submarine_Core submarine;
-    public GameObject insideCabin;
+    public GameObject[] insideCabin;
     private void Start()
     {
         submarine = GameObject.Find("Submarine").GetComponent<Submarine_Core>();
@@ -30,6 +31,7 @@ public class Placeable_Object : MonoBehaviour
         if (Submarine_Core.submode)
         {
             spriteRenderer.enabled = false;
+
         }
         else
         {
@@ -85,11 +87,20 @@ public class Placeable_Object : MonoBehaviour
                 placed_object.transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 //update pivot
                 submarine.updatePivot();
-                if (insideCabin != null)
+                if (insideCabin.Length > 0)
                 {
-                    //make inside cabin vis
-                    SpriteRenderer cabinSR = insideCabin.GetComponent<SpriteRenderer>();
-                    cabinSR.color = new Color(cabinSR.color.r, cabinSR.color.g, cabinSR.color.b, 1);
+                    for (int i = 0; i < insideCabin.Length; i++)
+                    {
+                        //make inside cabin vis
+                        SpriteRenderer cabinSR = insideCabin[i].GetComponent<SpriteRenderer>();
+                        cabinSR.color = new Color(cabinSR.color.r, cabinSR.color.g, cabinSR.color.b, 1);
+                        //if spot light
+                        if (insideCabin[i].GetComponent<Light2D>())
+                        {
+                            Light2D light = insideCabin[i].GetComponent<Light2D>();
+                            light.enabled = true;
+                        }
+                    }
                 }
                 //destroys placeable script
                 Destroy(gameObject.GetComponent<Placeable_Object>());
@@ -167,11 +178,20 @@ public class Placeable_Object : MonoBehaviour
         {
             isvisible = 1;
         }
-        if (insideCabin != null)
+        if (insideCabin.Length > 0)
         {
-            //sets vis of inside cabin
-            SpriteRenderer cabinSR = insideCabin.GetComponent<SpriteRenderer>();
-            cabinSR.color = new Color(cabinSR.color.r, cabinSR.color.g, cabinSR.color.b, isvisible);
+            for (int i = 0; i < insideCabin.Length; i++)
+            {
+                //sets vis of inside cabin
+                SpriteRenderer cabinSR = insideCabin[i].GetComponent<SpriteRenderer>();
+                cabinSR.color = new Color(cabinSR.color.r, cabinSR.color.g, cabinSR.color.b, isvisible);
+                //if spot light
+                if (insideCabin[i].GetComponent<Light2D>())
+                {
+                    Light2D light = insideCabin[i].GetComponent<Light2D>();
+                    light.enabled = false;
+                }
+            }
         }
         //sets vis of outercabin
         SpriteRenderer mainSR = GetComponent<SpriteRenderer>();

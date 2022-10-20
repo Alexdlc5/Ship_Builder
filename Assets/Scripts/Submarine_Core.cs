@@ -75,7 +75,7 @@ public class Submarine_Core : MonoBehaviour
             }
             else
             {
-                rb.gravityScale = 0;
+                rb.gravityScale = .01f;
             }
             bool any_key_pressed = Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.LeftShift);
             if (any_key_pressed)
