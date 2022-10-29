@@ -7,7 +7,7 @@ public class Point_To_Mouse : MonoBehaviour
     public float angle_offset = -90;
     public bool isLight = false;
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //sub mode
         if (Submarine_Core.submode)
