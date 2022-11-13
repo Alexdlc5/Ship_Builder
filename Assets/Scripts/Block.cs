@@ -36,21 +36,21 @@ public class Block : MonoBehaviour
                     spriteRenderer.color = new Color(1, 1, 1, 1);
                 }
                 //thru edge blocks
-                bool hasNeighbor = false;
-                for (int i = 0; i < remove.edge_blocks.Length; i++)
-                {
-                    //checks edge block locations against current points location
-                    if (Vector2.Distance(remove.edge_blocks[i].transform.position, transform.position) <= 1.6f)
-                    {
-                        hasNeighbor = true;
-                        continue;
-                    }
-                }
-                //no Neighbor?
-                if (!hasNeighbor)
-                {
-                    Destroy(gameObject);
-                }
+                //bool hasNeighbor = false;
+                //for (int i = 0; i < remove.edge_blocks.Length; i++)
+                //{
+                //    //checks edge block locations against current points location
+                //    if (Vector2.Distance(remove.edge_blocks[i].transform.position, transform.position) <= 1.6f)
+                //    {
+                //        hasNeighbor = true;
+                //        continue;
+                //    }
+                //}
+                ////no Neighbor?
+                //if (!hasNeighbor)
+                //{
+                //    Destroy(gameObject);
+                //}
             }
         }
         else 

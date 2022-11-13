@@ -19,8 +19,6 @@ public class WaterNoise : MonoBehaviour
     private void Start()
     { 
         transform.localScale = (Vector3)new Vector2(120, 120);
-        width = 256;
-        height = 256;
         rawImage = GetComponent<SpriteRenderer>();
         rawImage.sprite = Sprite.Create(GenerateTexture(), new Rect(0, 0, width, height), Vector2.zero);
     }

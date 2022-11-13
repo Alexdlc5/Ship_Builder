@@ -926,6 +926,7 @@ MonoBehaviour:
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
@@ -1310,7 +1311,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49526c333180d7d4caabc9c7607c1735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 256
+  width: 512
   height: 256
   scale: 35
   depth_gradient: 0
@@ -2298,7 +2299,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49526c333180d7d4caabc9c7607c1735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 256
+  width: 512
   height: 256
   scale: 8
   depth_gradient: 255.55556
@@ -2388,6 +2389,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -2908,12 +2910,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldTile: {fileID: 4956943952902676702, guid: a6cbeff27a68f0b449ae4e3bd30a1462, type: 3}
   slantworldTile: {fileID: 2822187271879930622, guid: 5c6761004837c6c4095821c986ffeb16, type: 3}
-  perlin_scale: 10
+  perlin_scale: 20
   generation_threshold: 0.4
   generation_density_gradient_V: 1000.555
   generation_density_gradient_H: 3000.5554
   grid_height: 300
-  grid_width: 300
+  grid_width: 600
 --- !u!4 &1781227591
 Transform:
   m_ObjectHideFlags: 0
